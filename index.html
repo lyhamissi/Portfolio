@@ -464,6 +464,10 @@
                 font-size: 2.5rem;
             }
 
+            .hero-buttons{
+                justify-content: center;
+            }
+
             .about-content {
                 grid-template-columns: 1fr;
             }
@@ -489,6 +493,39 @@
                 gap: 30px;
             }
         }
+
+        /* Hamburger hidden on desktop */
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Mobile menu styles */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+                color: #333;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                right: 0px;
+                background: white;
+                flex-direction: column;
+                gap: 20px;
+                padding: 40px;
+                width: 100%;
+                border-radius: 10px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                display: none;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+        }
     </style>
 </head>
 
@@ -496,6 +533,12 @@
     <header>
         <nav class="container">
             <div class="logo">Afua</div>
+
+            <!-- Hamburger Icon -->
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -504,6 +547,7 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
+
     </header>
 
     <section id="home" class="hero">
@@ -515,7 +559,7 @@
                         Let's bring your vision to life.</p>
                     <div class="hero-buttons">
                         <a href="#contact" class="btn-primary">Hire Me Now</a>
-                        <a href="https://drive.google.com/file/d/1xW2mH7fttax7ujSw6S3XMDX20o3yGEdN/view?usp=sharing"
+                        <a href="https://afuahamissi.my.canva.site/"
                             class="btn-secondary">Download
                             CV</a>
                     </div>
@@ -704,12 +748,14 @@
                         </div>
                     </div>
                 </div>
-                  <div class="project">
+                <div class="project">
                     <div class="project-image"> <img src="./yegoshecan.png"></div>
                     <div class="project-content">
                         <h4>An E-learning combined with E-commerce Platform </h4>
-                        <p>A clean, responsive website to help women who did not get a chance to get their hands to education get some 
-                            knowledge about entrepreneurship and create their own businesses to support their livind YEGO SHECAN
+                        <p>A clean, responsive website to help women who did not get a chance to get their hands to
+                            education get some
+                            knowledge about entrepreneurship and create their own businesses to support their livind
+                            YEGO SHECAN
 
                         </p>
                         <div class="project-links">
@@ -822,6 +868,15 @@
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'all 0.6s ease';
             observer.observe(el);
+        });
+        const hamburger = document.querySelector(".hamburger");
+        const navLinks = document.querySelector(".nav-links");
+
+        hamburger.addEventListener("click", () => {
+            navLinks.classList.toggle("show");
+            hamburger.innerHTML = navLinks.classList.contains("show")
+                ? '<i class="fas fa-times"></i>'
+                : '<i class="fas fa-bars"></i>';
         });
     </script>
 </body>
